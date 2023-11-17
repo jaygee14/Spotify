@@ -1,4 +1,25 @@
 export const artists = {
+    'Lil Wayne': {
+        info: {
+            stageName: 'Lil Wayne',
+            governmentName: 'Michale Shawn Carter',
+            age: 40,
+            num_discog: 8,
+            debut: { year: 2000, name: 'Tha Carter', tracks: 12, runtime: 48 }
+        },
+
+        albums: {
+            'Tha Carter': {
+                artist: 'Lil Wayne',
+                year: 2000,
+                numberOfTracks: 12,
+                tracks: ['Walk In', 'Go DJ', 'This is tha Carter', 'BM.JR', 'On The Block #1', 'I Miss My Dogs', `We Don't`, 'On My Own', 'The Heat']
+            }
+        },
+
+        topTen: ['Walk In', 'Go DJ', 'This is tha Carter', 'BM.JR', 'On The Block #1', 'I Miss My Dogs', `We Don't`, 'On My Own', 'The Heat']
+    },
+
     'J.Cole': {
         info: {
             stageName: 'J.Cole',
