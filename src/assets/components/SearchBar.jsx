@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import SearchResults from './SearchResults';
-import { artists } from '../../../data.js';
-
+import find from "./script/find";
+import getToken from "./script/key";
 
 
 export default function SearchBar(){
     const [search, setSearch] = useState('J.Cole');
-    const [info, setInfo] = useState([])
+    const [info, setInfo] = useState({});
     const [input, setInput] = useState('');
+    const [token, setToken] = useState('BQDwp-VOa4c5MMMbNtu-kEq8QiYRLMwM1KFILMtoPsNord6oDsm1xywgzx-T8q26mUNTN2-_3mFfc_AOqqefMW6BkSzI8zOrvC_ikLZrdtN2-c1L6eM');
 
     const handleChange = (e) => {
         setInput(e.target.value)
@@ -18,8 +19,28 @@ export default function SearchBar(){
         setSearch(input)
     };
 
+    async function call() {
+        const token = await getToken()
+        const access = await token.access_token;
+        setToken(access);
+    }
+
+    /*useEffect(
+        () => {
+            call();
+        }, []
+    )*/
+
     useEffect(
-        () => {setInfo(artists[search].topTen)}, [search]
+        () => {
+            find(token, search).then(response => setInfo(
+                {
+                    artist_name : response.artists.items[0].name,
+                    photo : response.artists.items[0].images[2].url
+                }
+
+            ))
+        } , [search]
     )
 
 
